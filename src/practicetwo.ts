@@ -112,3 +112,144 @@ console.log(product1)
     name: "saikat",
     age : 23,
  }
+
+
+// make a employee interface  
+interface Employee {
+    id: number; 
+    name : string;
+    department: string;
+    salary: number; 
+}
+
+const employee: Employee = {
+    id:1, 
+    name:"saikat", 
+    department: "Development", 
+    salary: 3000
+}
+
+console.log(employee);
+
+
+// optional Property: 
+
+interface User1 {
+  name: string;
+  age: number;
+  email?: string;
+}
+const userfour: User1 = {
+    name: "Rahim",
+    age: 25
+};
+
+const userTwo: User1 = {
+    name: "Karim",
+    age: 30,
+    email: "karim@gmail.com"
+};
+
+
+
+// interface inheritance 
+
+interface Person {
+    name: string;
+    age: number;
+}
+
+interface  Employee extends Person{
+    employeeId: number;
+    salary: number;
+}
+
+
+const employeenew: Employee = {
+    name: "Saikat",
+    age: 25,
+    employeeId: 101,
+    salary: 35000
+};
+console.log(employeenew)
+
+
+
+
+// Type assertion 
+let value : unknown = "Hello Typescript";
+let result = value as string;
+
+console.log(result.toUpperCase());
+
+
+
+// narrowing Down 
+function showValue(value: string |number) : void{
+    if(typeof value === "string"){
+        console.log(value.toUpperCase());
+        
+    }else {
+        console.log(value.toFixed(2))
+    }
+}
+
+showValue("hello");
+showValue(100);
+
+// 2.
+ function showName(name: string | null): void{
+    if(name === null){
+        console.log("no data ")
+    }else{
+       console.log(name.toUpperCase())
+    }
+}
+
+showName("saikat")
+showName(null);
+
+
+// in operator |
+
+type Admin = {
+    name: string;
+    role: string;
+};
+
+type Customer = {
+    name: string;
+    purchase: number;
+};
+
+function showUser(user: Admin | Customer): void {
+
+    if ("role" in user) {
+        console.log("Admin:", user.role);
+    } else {
+        console.log("Customer:", user.purchase);
+    }
+
+}
+
+showUser({
+    name: "Saikat",
+    role: "Admin"
+});
+
+showUser({
+    name: "Rahim",
+    purchase: 5
+});
+
+
+
+
+// Generics 
+function getvalue<T>(value: T): T{
+    return value
+}
+
+console.log(getvalue(<number>(100)));
+console.log(getvalue(<string>("hello")));
+console.log(getvalue(<boolean>(true)));
