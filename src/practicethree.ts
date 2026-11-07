@@ -164,3 +164,177 @@ console.log(result.toUpperCase());
 let value : unknown =100; 
 let resultone = value as number; 
 console.log(resultone.toFixed(2));
+
+// null checking 
+function showName(name: string | null){
+    if(name === null){
+        console.log("no name");
+        
+    }else {
+        console.log(name.toUpperCase());
+        
+    }
+}
+show(null);
+show("Saikat");
+
+
+// generics function 
+function getValue <T>(value:T ): T{
+    return value
+}
+
+console.log(getValue<string>("saikat"));
+console.log(getValue<number>(100));
+
+
+
+// two type together 
+type Person = {
+    name : string;
+}
+
+type Developer = {
+    skills : string[];
+}
+
+type fullDeveloper  = Person & Developer;
+ const user : fullDeveloper = {
+    name: "saikat",
+    skills: ["react", "Next.js"]
+ };
+
+ console.log(user);
+ 
+
+
+ // intersection 
+ 
+ 
+ type User = {
+    name: string; 
+    email: string;
+ }
+
+ type Permission = {
+       canEdit : boolean;
+       candDelete: boolean;
+ }
+
+
+
+ type Admin = User & Permission;
+
+ const admin : Admin = {
+    name: "saikat", 
+    email: "saikat@gamil.com",
+    canEdit: true,
+    candDelete: false
+
+ }
+
+ console.log(admin);
+
+ 
+
+
+
+//  utiliy types : 
+//  1. partial : 
+
+interface User {
+    name: string; 
+    age : number;
+    email: string;
+
+}
+
+
+const user : Partial <User> = {
+    name: "string"
+
+}
+
+console.log(user);
+
+
+
+
+// required 
+interface User {
+    name: string; 
+    age? : number;
+
+
+}
+
+const user: Required<User> = {
+    name: "saikat", 
+    age: 25,
+}
+
+console.log(user);
+// : একটি Product-এর সব Property Required করো।
+
+interface Product {
+    name?: string;
+    price?: number;
+}
+
+const product :Required <Produt> = {
+    name: "watch", 
+    price: 2344,
+}
+console.log(product)
+
+
+
+// Problem 1: User Interface থেকে শুধু Name এবং Email নাও।
+
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    age: number;
+}
+
+
+const user : Pick <User, "name" |"email"> = {
+    name: "saikat", 
+    email: "saikat@gmail.com"
+}
+
+console.log(user);
+
+
+// omit 
+const Usertwo : Omit<User, age> = {
+    id: 2,
+    name : "don't know",
+    email:"dont@gmail.com",
+}
+
+
+console.log(userTwo);
+
+
+// we can omit more than two product 
+const Profile : Omit <User , "id" | "email"> = {
+    name: "saikat"
+}
+console.log(Profile);
+
+
+// Read only 
+
+interface Product {
+    name: string;
+    price: number;
+}
+
+const product : Readonly <Product> = {
+    name: "watch", 
+    price : 3435,
+}
+
+console.log(product);
