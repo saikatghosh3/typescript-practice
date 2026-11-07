@@ -253,3 +253,8 @@ function getvalue<T>(value: T): T{
 console.log(getvalue(<number>(100)));
 console.log(getvalue(<string>("hello")));
 console.log(getvalue(<boolean>(true)));
+
+
+
+
+
